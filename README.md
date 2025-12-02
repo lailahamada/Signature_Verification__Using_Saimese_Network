@@ -24,7 +24,7 @@ A **Siamese Network** is a type of neural network that learns **similarity betwe
    - Low similarity → Forged  
 
 **Diagram of Siamese Network:**  
-![Siamese Network Diagram] (https://miro.medium.com/v2/resize:fit:1100/format:webp/0*hcj2L_XcDVlGhMDx.png)  
+![Siamese Network Diagram](https://miro.medium.com/v2/resize:fit:1100/format:webp/0*hcj2L_XcDVlGhMDx.png)  
 
 
 ---
@@ -53,8 +53,11 @@ A **Siamese Network** is a type of neural network that learns **similarity betwe
 ---
 
 ## Demonstration
-🎥 **Video demo:** `signature_verification_ved.mp4`  
-> Shows real-time verification of signatures using the trained model.
+🎥 **Video demo:**
+<video width="640" height="480" controls>
+  <source src="signature_verification_Ved.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 ---
 

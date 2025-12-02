@@ -1,11 +1,65 @@
-# Signature_Verification__Using_Saimese_Network
+# Signature Verification Using Siamese Network
 
-✍️ Signature Verification using Siamese NetworksThis repository contains an implementation of a Siamese Network model for online/offline signature verification. The project uses the powerful feature extraction capabilities of CNNs (Convolutional Neural Networks) to generate high-dimensional embeddings for signatures. The system then determines the authenticity of a signature by calculating the distance between the reference sample and the verification sample, providing a similarity score via a Gradio web interface.🚀 Project OverviewSignature verification is a classic application of biometric authentication. This project addresses the task as a one-shot learning problem, meaning the model can learn to compare two instances (signatures) even if it has seen only one or a few examples during training.The core technology used is the Siamese Network.ShutterstockThis architecture is defined by having two or more identical subnetworks (referred to as 'twins') which share identical weights.Feature Extraction: Each subnetwork processes one input signature and outputs a compact, 256-dimensional embedding vector, typically the output of a final dense layer in the backbone CNN.Distance Calculation: The distance between the two embedding vectors is calculated (using the L1 distance metric, which represents the element-wise absolute difference).Similarity Score: This distance is passed through a final layer (with a Sigmoid activation) to produce a similarity score between 0 and 1.Verification: If the similarity score exceeds a defined threshold (set to 55% in the current Gradio demo), the signature is classified as Verified (Match). (A low threshold prioritizes usability by minimizing false rejections of genuine signatures).🛠️ Key TechnologiesDeep Learning Framework: TensorFlow and KerasModel Architecture: Custom Siamese Network utilizing specialized layers (L1Distance, L2Normalization).Application Interface: Gradio for creating a simple, shareable, browser-based demo.Data Handling: NumPy, PIL (Pillow).📈 Performance MetricsThe model demonstrates strong classification capabilities, exhibiting high accuracy on both the training and independent testing datasets.MetricAccuracy ScoreTraining Accuracy92%Testing Accuracy97%Verification Threshold (EER Proxy)55%📂 Repository StructureThe core files for the application and model are:FileDescriptionapp.pyPython script containing the Gradio interface, model loading logic, preprocessing, and the predict_match function.siamese_signature.kerasThe trained model file required by app.py. (Must be present to run the demo).README.mdThis file.⚙️ Setup and InstallationPrerequisitesPython 3.8+The trained model file: siamese_signature.keras (must be placed in the root directory).InstallationClone the repository and install the necessary Python packages:git clone [YOUR_REPOSITORY_URL]
-cd signature-verification-siamese
-pip install tensorflow numpy pillow gradio
+## Overview
+This project implements a **Siamese Neural Network** to verify handwritten signatures. The model learns to compare two signatures and determine whether they belong to the same person (**genuine**) or not (**forged**).
+
+---
+
+## What is a Siamese Network?
+
+A **Siamese Network** is a type of neural network that learns **similarity between two inputs** instead of classifying them directly.  
+
+- It consists of **two identical subnetworks (backbones)** that share the same weights.  
+- Each backbone extracts an **embedding** (feature vector) from an input image.  
+- A **distance function** (e.g., L1 or L2 distance) compares the embeddings.  
+- The network is trained with **pairs of inputs** and a label indicating similarity (1 for similar, 0 for different).  
+
+**How it works for signature verification:**
+
+1. Two signature images are passed through the backbone CNN.
+2. The network computes their embeddings.
+3. The embeddings are compared using L1 distance.
+4. A sigmoid layer outputs a probability:
+   - High similarity → Genuine  
+   - Low similarity → Forged  
+
+**Diagram of Siamese Network:**  
+![Siamese Network Diagram](https://miro.medium.com/v2/resize:fit:1100/format:webp/0*hcj2L_XcDVlGhMDx.png)  
 
 
-🚀 Usage (Running the Demo)Once you have installed the prerequisites and ensured siamese_signature.keras is in the same directory as app.py:Run the application script:python app.py
+---
 
+## Dataset
+- Handwritten signature dataset with **train** and **test** sets.  
+- Each sample is a pair of images with a label:  
+  - `1` → Genuine  
+  - `0` → Forged  
 
-Gradio will launch a local server and provide a URL (e.g., http://127.0.0.1:7860). If running in a Colab or hosted notebook environment, it will generate a public share link.Test the System:Upload a Reference Sample (Image 1) of a known signature.Upload a Verification Sample (Image 2) to be checked against the reference.The system will display the Similarity Score (e.g., 78.50%) and the Verification Result (Match or No Match).🎥 Demo Video (Gradio Interface)The best way to showcase the interactive application is through a short video demonstration.$$INSERT LINK TO YOUR GRADIO DEMO VIDEO HERE$$This video should walk viewers through:Loading the application.Uploading two similar (Genuine) signatures and showing the "Match" result.Uploading two dissimilar (Forged) signatures and showing the "No Match" result.Mentioning the current verification threshold of 55%.🤝 ContributionFeel free to open issues or submit pull requests to improve the model architecture, training pipeline, or the Gradio interface.Created by$$Your Name/GitHub Handle$$
+---
+
+## Model Architecture
+- **Backbone CNN:** Conv2D → MaxPooling → Dense → L2 Normalization  
+- **Distance layer:** L1 distance between embeddings  
+- **Output layer:** Sigmoid for binary classification  
+
+---
+
+## Results
+| Metric      | Value |
+|------------|-------|
+| Training Accuracy | 92% |
+| Test Accuracy     | 97% |
+
+---
+
+## Demonstration
+🎥 **Video demo:** `signature_verification_demo.mp4`  
+> Shows real-time verification of signatures using the trained model.
+
+---
+
+## Future Improvements
+- Use **pretrained backbones** (ResNet, EfficientNet) for better feature extraction.  
+- Implement **data augmentation** to improve model robustness.  
+- Deploy as a **web application** for online signature verification.  
+- Add **interactive threshold slider** for controlling sensitivity.

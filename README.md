@@ -53,11 +53,7 @@ A **Siamese Network** is a type of neural network that learns **similarity betwe
 ---
 
 ## Demonstration
-🎥 **Video demo:**
-<video width="640" height="480" controls>
-  <source src="signature_verification_Ved.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+🎥 **Video demo:** [Watch the demo video](https://drive.google.com/file/d/1jF7CpbFLoK_EU-9YZGGe-fC4YQfHmgS3/view)
 
 ---
 
